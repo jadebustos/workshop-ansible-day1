@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://redhat-scholars.github.io/course-template/workshop-ansible/01-installing-control-node.html</loc>
-<lastmod>2022-03-23T21:32:57.328Z</lastmod>
+<lastmod>2022-03-23T21:45:03.260Z</lastmod>
 </url>
 <url>
 <loc>https://redhat-scholars.github.io/course-template/workshop-ansible/02-deploy.html</loc>
-<lastmod>2022-03-23T21:32:57.328Z</lastmod>
+<lastmod>2022-03-23T21:45:03.260Z</lastmod>
 </url>
 <url>
 <loc>https://redhat-scholars.github.io/course-template/workshop-ansible/index.html</loc>
-<lastmod>2022-03-23T21:32:57.328Z</lastmod>
+<lastmod>2022-03-23T21:45:03.260Z</lastmod>
 </url>
 </urlset>
