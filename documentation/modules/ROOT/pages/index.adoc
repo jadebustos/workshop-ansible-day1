@@ -1,11 +1,18 @@
-= Welcome to Template Tutorial
+= Welcome Ansible Workshop (Day 1)
 :page-layout: home
 :!sectids:
 
 [.text-center.strong]
-== Publish Services to Kubernetes
+== First steps using Ansible
 
-A Kubernetes tutorial to show how you can deploy a Java service to a Kubernetes cluster as it was a child game.
+This tutorial is the first part of a serie of tutorials about learning how to use Ansible to automate tasks.
+
+== Mantainers
+
+This tutorial is maintained by:
+
+* https://github.com/gmejia-rh
+* https://github.com/jadebustos
 
 [.tiles.browse]
 == Browse modules
