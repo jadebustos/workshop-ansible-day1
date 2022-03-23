@@ -1,0 +1,18 @@
+= Ansible Inventory
+
+include::_attributes.adoc[]
+
+[#steps]
+== Steps
+
+XXXX
+
+[#usefullinks]
+== Useful Links
+
+XXXX
+
+[#authorinformation]
+== Author Information
+
+XXXX

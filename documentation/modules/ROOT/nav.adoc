@@ -7,3 +7,13 @@
 ** xref:02-ansible-adhoc-commands.adoc#steps[Steps]
 ** xref:02-ansible-adhoc-commands.adoc#usefullinks[Useful Links]
 ** xref:02-ansible-adhoc-commands.adoc#authorinformation[Author Information]
+
+* xref:03-ansible-inventory.adoc[3. Ansible Inventory]
+** xref:03-ansible-inventory.adoc#steps[Steps]
+** xref:03-ansible-inventory.adoc#usefullinks[Useful Links]
+** xref:03-ansible-inventory.adoc#authorinformation[Author Information]
+
+* xref:04-ansible-playbooks.adoc[3. Ansible Playbooks]
+** xref:04-ansible-playbooks.adoc#steps[Steps]
+** xref:04-ansible-playbooks.adoc#usefullinks[Useful Links]
+** xref:04-ansible-playbooks.adoc#authorinformation[Author Information]

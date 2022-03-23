@@ -29,6 +29,19 @@ This tutorial is maintained by:
 
 
 [.tile]
-.xref:02-deploy.adoc[Deploying]
-* xref:02-deploy.adoc#package[Package the Application]
-* xref:02-deploy.adoc#deploy[Deploy the Application]
+.xref:02-ansible-adhoc-commands.adoc[Ansible AdHoc Commands]
+* xref:02-ansible-adhoc-commands.adoc#steps[Steps]
+* xref:02-ansible-adhoc-commands.adoc#usefullinks[Useful Links]
+* xref:02-ansible-adhoc-commands.adoc#authorinformation[Author Information]
+
+[.tile]
+.xref:03-ansible-inventory.adoc[Ansible Inventory]
+* xref:02-ansible-inventory.adoc#steps[Steps]
+* xref:02-ansible-inventory.adoc#usefullinks[Useful Links]
+* xref:02-ansible-inventory.adoc#authorinformation[Author Information]
+
+[.tile]
+.xref:04-ansible-playbooks.adoc[Ansible Playbooks]
+* xref:02-ansible-playbooks.adoc#steps[Steps]
+* xref:02-ansible-playbooks.adoc#usefullinks[Useful Links]
+* xref:02-ansible-playbooks.adoc#authorinformation[Author Information]
