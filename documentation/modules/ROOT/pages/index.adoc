@@ -14,6 +14,7 @@ A Kubernetes tutorial to show how you can deploy a Java service to a Kubernetes 
 .xref:01-setup.adoc[Get Started]
 * xref:01-setup.adoc#minikube[Minikube]
 
+
 [.tile]
 .xref:02-deploy.adoc[Deploying]
 * xref:02-deploy.adoc#package[Package the Application]
