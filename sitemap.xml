@@ -2,22 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://redhat-scholars.github.io/course-template/workshop-ansible/01-installing-control-node.html</loc>
-<lastmod>2022-03-23T22:25:44.935Z</lastmod>
+<lastmod>2022-03-23T22:28:19.217Z</lastmod>
 </url>
 <url>
 <loc>https://redhat-scholars.github.io/course-template/workshop-ansible/02-ansible-adhoc-commands.html</loc>
-<lastmod>2022-03-23T22:25:44.935Z</lastmod>
+<lastmod>2022-03-23T22:28:19.217Z</lastmod>
 </url>
 <url>
 <loc>https://redhat-scholars.github.io/course-template/workshop-ansible/03-ansible-inventory.html</loc>
-<lastmod>2022-03-23T22:25:44.935Z</lastmod>
+<lastmod>2022-03-23T22:28:19.217Z</lastmod>
 </url>
 <url>
 <loc>https://redhat-scholars.github.io/course-template/workshop-ansible/04-ansible-playbooks.html</loc>
-<lastmod>2022-03-23T22:25:44.935Z</lastmod>
+<lastmod>2022-03-23T22:28:19.217Z</lastmod>
 </url>
 <url>
 <loc>https://redhat-scholars.github.io/course-template/workshop-ansible/index.html</loc>
-<lastmod>2022-03-23T22:25:44.935Z</lastmod>
+<lastmod>2022-03-23T22:28:19.217Z</lastmod>
 </url>
 </urlset>
