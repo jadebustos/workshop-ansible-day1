@@ -16,13 +16,12 @@ In order to understand this lesson properly, a set of steps have been designed t
 To install the Ansible Engine connect to the machine you want to use to execute ansible, the ansible controller from now on, and as root user:
 
 [source,bash,subs="+macros,+attributes"]
----
 [root@controller ~]# dnf install epel-release -y
 ...
 [root@controller ~]# dnf install ansible -y
 ...
 [root@controller ~]#
----
+[]
 
 You can see a more detailed information in section <<usefullinks>>.
 
