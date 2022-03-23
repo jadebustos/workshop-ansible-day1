@@ -21,7 +21,6 @@ To install the Ansible Engine connect to the machine you want to use to execute 
 [root@controller ~]# dnf install ansible -y
 ...
 [root@controller ~]#
-[]
 
 You can see a more detailed information in section <<usefullinks>>.
 
