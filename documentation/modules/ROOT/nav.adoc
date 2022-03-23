@@ -13,7 +13,7 @@
 ** xref:03-ansible-inventory.adoc#usefullinks[Useful Links]
 ** xref:03-ansible-inventory.adoc#authorinformation[Author Information]
 
-* xref:04-ansible-playbooks.adoc[3. Ansible Playbooks]
+* xref:04-ansible-playbooks.adoc[4. Ansible Playbooks]
 ** xref:04-ansible-playbooks.adoc#steps[Steps]
 ** xref:04-ansible-playbooks.adoc#usefullinks[Useful Links]
 ** xref:04-ansible-playbooks.adoc#authorinformation[Author Information]
