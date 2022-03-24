@@ -148,6 +148,8 @@ So as ansible is able to connect to the client using the **ansible** user now we
 
 If you were able to change to **root** user without being prompted for password you can start using ansible. **Congratulations!!!**. If not review section <<configuringansibleclients>>.
 
+IMPORTANT: If these two checks are not successful you will not able to run ansible tasks. Review all the configuration in ansible controller node and ansible linux clients until these two checks are successfully passed.
+
 [#usefullinks]
 == Useful Links
 
