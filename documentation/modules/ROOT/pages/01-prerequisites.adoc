@@ -64,6 +64,16 @@ You can see a more detailed information in section <<usefullinks>>.
 [#installingansibleclients]
 == Installing Ansible Clients
 
+We need at least one Linux client. We need to perform the following actions in the Linux client to be able to execute ansible tasks within.
+
+Ansible needs an user to connect to the client to perform tasks so we will create a user which will be used for ansible to connect to the client:
+
+[source,bash,subs="+macros,+attributes"]
+[root@client ~]# useradd -md /home/ansible ansible
+[root@client ~]#
+
+As ansible will use public key authentication to connect we do not configure a password for the user. It is posible to use use password traditional authentication to connect to the Linux client when ansible connects but this authentication method is not used.
+
 [#usefullinks]
 == Useful Links
 
