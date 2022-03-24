@@ -22,10 +22,11 @@ This tutorial is maintained by:
 == Browse modules
 
 [.tile]
-.xref:01-installing-control-node.adoc[Installing Control Node]
-* xref:01-installing-control-node.adoc#steps[Steps]
-* xref:01-installing-control-node.adoc#usefullinks[Useful Links]
-* xref:01-installing-control-node.adoc#authorinformation[Author Information]
+.xref:01-prerequisites.adoc[Prerequisites]
+* xref:01-prerequisites.adoc#installingcontrolnode[Installing Control Node]
+* xref:01-prerequisites.adoc#installingansibleclients[Installing Ansible Clients]
+* xref:01-prerequisites.adoc#usefullinks[Useful Links]
+* xref:01-prerequisites.adoc#authorinformation[Author Information]
 
 
 [.tile]
