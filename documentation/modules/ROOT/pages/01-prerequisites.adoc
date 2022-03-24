@@ -61,10 +61,17 @@ The key's randomart image is:
 
 You can see a more detailed information in section <<usefullinks>>.
 
-[#installingansibleclients]
-== Installing Ansible Clients
+[#configuringansibleclients]
+== Configuring Ansible Clients
 
 We need at least one Linux client. We need to perform the following actions in the Linux client to be able to execute ansible tasks within.
+
+We should install **python** in the client:
+
+[source,bash,subs="+macros,+attributes"]
+[root@client ~]# dnf install python36 -y
+...
+[root@client ~]#
 
 Ansible needs an user to connect to the client to perform tasks so we will create a user which will be used for ansible to connect to the client:
 
@@ -88,15 +95,62 @@ In the controller **devops** user will be used to connect to clients using the *
 ansible@client's password:
 [devops@controller ~]$
 
+As some tasks we are going to perform using ansible would need privileged access, such as:
+
+* Installing/removing software
+* Rebooting system.
+* Changing system's configuration.
+* ...
+
+We will need to provide **ansible** user a way to run privileged commands, which means **root** privileges. For this reason we will allow the **ansible** user to be able to switch to **root** user and as we are talking about automation we will configure **ansible** user to impersonate **root** without asking for a password. For this reason we will create a file **/etc/sudoers.d/ansible**:
+
+[source,bash,subs="+macros,+attributes"]
+[root@client ~]# cat /etc/sudoers.d/ansible 
+ansible	ALL = (ALL) NOPASSWD: ALL
+[root@client ~]#* xref:01-prerequisites.adoc#validatingansibleconfiguration[Validating Ansible configuration]
+
+[#validatingansibleconfiguration]
+== Validating Ansible configuration
+
+Before starting to use ansible we should check that all the configuration is working.
+
+The first thing we need to check is that **devops** user is able to connect to **ansible** user in the linux clients.
+
+So the first thing we perform is to create an inventory file (we will explain what an inventory file is in section <<ansibleinventory>>). Create a file named **hosts**:
+
+[source,bash,subs="+macros,+attributes"]
+[devops@controller ~]$ mkdir ansible
+[devops@controller ~]$ cd ansible
+[devops@controller ansible]$ cat hosts
+[all:vars]
+ansible_user=ansible
+[clients]
+<YOUR ANSIBLE CLIENT IP HERE>
+[devops@controller ansible]$
+
+To check that ansible is able to connect to the client using the **ansible** user:
+
+[source,bash,subs="+macros,+attributes"]
+[devops@controller ansible]$ ansible -i hosts -m ping all
+client | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+[devops@controller ansible]$
+
+If you get a similar output, **congratulations!!!** If not review section <<configuringansibleclients>>.
+
+So as ansible is able to connect to the client using the **ansible** user now we need to check that **ansible** user is able to perform passwordless sudo in the client. Connect to linux client as ansible user:
+
+[source,bash,subs="+macros,+attributes"]
+[ansible@client ~]$ sudo su -
+[root@client ~]#
+
+If you were able to change to **root** user without being prompted for password you can start using ansible. **Congratulations!!!**. If not review section <<configuringansibleclients>>.
+
 [#usefullinks]
 == Useful Links
 
 For more information, please visit:
 
 * https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-node
-
-[#authorinformation]
-== Author Information
-
-Asier Cidon - Cloud Consultant
-asier.cidon@redhat.com

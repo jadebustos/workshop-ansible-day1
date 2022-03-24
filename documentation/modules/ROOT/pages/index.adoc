@@ -24,7 +24,8 @@ This tutorial is maintained by:
 [.tile]
 .xref:01-prerequisites.adoc[Prerequisites]
 * xref:01-prerequisites.adoc#installingcontrolnode[Installing Control Node]
-* xref:01-prerequisites.adoc#installingansibleclients[Installing Ansible Clients]
+* xref:01-prerequisites.adoc#configuringansibleclients[Configuring Ansible Clients]
+* xref:01-prerequisites.adoc#validatingansibleconfiguration[Validating Ansible configuration]
 * xref:01-prerequisites.adoc#usefullinks[Useful Links]
 * xref:01-prerequisites.adoc#authorinformation[Author Information]
 

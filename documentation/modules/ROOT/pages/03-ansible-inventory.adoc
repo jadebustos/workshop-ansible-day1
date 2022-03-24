@@ -1,3 +1,4 @@
+[#ansibleinventory]
 = Ansible Inventory
 
 include::_attributes.adoc[]
