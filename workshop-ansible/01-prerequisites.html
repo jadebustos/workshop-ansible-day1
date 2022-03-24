@@ -59,7 +59,10 @@
     <a class="nav-link" href="#installingcontrolnode">Installing Control Node</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#installingansibleclients">Installing Ansible Clients</a>
+    <a class="nav-link" href="#configuringansibleclients">Configuring Ansible Clients</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#validatingansibleconfiguration">Validating Ansible configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#usefullinks">Useful Links</a>
@@ -214,10 +217,20 @@ The key's randomart image is:
 </div>
 </div>
 <div class="sect1">
-<h2 id="installingansibleclients"><a class="anchor" href="#installingansibleclients"></a>Installing Ansible Clients</h2>
+<h2 id="configuringansibleclients"><a class="anchor" href="#configuringansibleclients"></a>Configuring Ansible Clients</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We need at least one Linux client. We need to perform the following actions in the Linux client to be able to execute ansible tasks within.</p>
+</div>
+<div class="paragraph">
+<p>We should install <strong>python</strong> in the client:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[root@client ~]# dnf install python36 -y
+...
+[root@client ~]#</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Ansible needs an user to connect to the client to perform tasks so we will create a user which will be used for ansible to connect to the client:</p>
@@ -248,6 +261,89 @@ ansible@client's password:
 [devops@controller ~]$</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>As some tasks we are going to perform using ansible would need privileged access, such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Installing/removing software</p>
+</li>
+<li>
+<p>Rebooting system.</p>
+</li>
+<li>
+<p>Changing system&#8217;s configuration.</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We will need to provide <strong>ansible</strong> user a way to run privileged commands, which means <strong>root</strong> privileges. For this reason we will allow the <strong>ansible</strong> user to be able to switch to <strong>root</strong> user and as we are talking about automation we will configure <strong>ansible</strong> user to impersonate <strong>root</strong> without asking for a password. For this reason we will create a file <strong>/etc/sudoers.d/ansible</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[root@client ~]# cat /etc/sudoers.d/ansible
+ansible	ALL = (ALL) NOPASSWD: ALL
+[root@client ~]#* <a href="#validatingansibleconfiguration">Validating Ansible configuration</a></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="validatingansibleconfiguration"><a class="anchor" href="#validatingansibleconfiguration"></a>Validating Ansible configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before starting to use ansible we should check that all the configuration is working.</p>
+</div>
+<div class="paragraph">
+<p>The first thing we need to check is that <strong>devops</strong> user is able to connect to <strong>ansible</strong> user in the linux clients.</p>
+</div>
+<div class="paragraph">
+<p>So the first thing we perform is to create an inventory file (we will explain what an inventory file is in section <a href="#ansibleinventory">[ansibleinventory]</a>). Create a file named <strong>hosts</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[devops@controller ~]$ mkdir ansible
+[devops@controller ~]$ cd ansible
+[devops@controller ansible]$ cat hosts
+[all:vars]
+ansible_user=ansible
+[clients]
+&lt;YOUR ANSIBLE CLIENT IP HERE&gt;
+[devops@controller ansible]$</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To check that ansible is able to connect to the client using the <strong>ansible</strong> user:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[devops@controller ansible]$ ansible -i hosts -m ping all
+client | SUCCESS =&gt; {
+    "changed": false,
+    "ping": "pong"
+}
+[devops@controller ansible]$</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you get a similar output, <strong>congratulations!!!</strong> If not review section <a href="#configuringansibleclients">Configuring Ansible Clients</a>.</p>
+</div>
+<div class="paragraph">
+<p>So as ansible is able to connect to the client using the <strong>ansible</strong> user now we need to check that <strong>ansible</strong> user is able to perform passwordless sudo in the client. Connect to linux client as ansible user:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[ansible@client ~]$ sudo su -
+[root@client ~]#</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you were able to change to <strong>root</strong> user without being prompted for password you can start using ansible. <strong>Congratulations!!!</strong>. If not review section <a href="#configuringansibleclients">Configuring Ansible Clients</a>.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -262,15 +358,6 @@ ansible@client's password:
 <p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-node" class="bare">https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-node</a></p>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="authorinformation"><a class="anchor" href="#authorinformation"></a>Author Information</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Asier Cidon - Cloud Consultant
-<a href="mailto:asier.cidon@redhat.com">asier.cidon@redhat.com</a></p>
 </div>
 </div>
 </div>
