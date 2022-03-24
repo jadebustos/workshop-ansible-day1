@@ -225,11 +225,28 @@ The key's randomart image is:
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[root@client ~]# useradd -md /home/ansible ansible
+[root@client ~]# passwd ansible
+passwd devops
+Changing password for user ansible.
+New password:
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password:
+passwd: all authentication tokens updated successfully.
 [root@client ~]#</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>As ansible will use public key authentication to connect we do not configure a password for the user. It is posible to use use password traditional authentication to connect to the Linux client when ansible connects but this authentication method is not used.</p>
+<p>As the <strong>ansible</strong> user will be used to connect to client machines to perform tasks we need to configure the authentication. As stated in section <a href="#installingcontrolnode">Installing Control Node</a> authentication will be performed using public key.</p>
+</div>
+<div class="paragraph">
+<p>In the controller <strong>devops</strong> user will be used to connect to clients using the <strong>ansible</strong> user so the <strong>devops</strong> user public key have to be configured in the <strong>ansible</strong> user account in all Linux clients. In the controller node:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[devops@controller ~]$ ssh-copy-id -i .ssh/id_rsa.pub ansible@client
+ansible@client's password:
+[devops@controller ~]$</code></pre>
+</div>
 </div>
 </div>
 </div>
