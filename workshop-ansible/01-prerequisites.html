@@ -155,9 +155,57 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[root@controller ~]# dnf install epel-release -y
 ...
-[root@controller ~]# dnf install ansible -y
+[root@controller ~]# dnf install ansible git -y
 ...
 [root@controller ~]#</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As a best practice you should create a non-privileged user to execute ansible so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[root@controller ~]# useradd -md /home/devops devops
+[root@controller ~]# passwd devops
+Changing password for user devops.
+New password:
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[root@controller ~]#</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>From now on we will use the <strong>devops</strong> user in the controller node to create and execute ansible tasks.</p>
+</div>
+<div class="paragraph">
+<p>As ansible will use SSH to connect to Linux clients we need to create a SSH public/private key to connect to Linux clients where we want to perform tasks using ansible. As <strong>devops</strong> user:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[devops@controller ~]$ ssh-keygen -t rsa -b 4096
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/devops/.ssh/id_rsa):
+Created directory '/home/devops/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/devops/.ssh/id_rsa
+Your public key has been saved in /home/devops/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:kuIq9VLRci2GwyJQrizANZiDsnmAwPxNEzrbCMlmhVE devops@controller
+The key's randomart image is:
+---[RSA 4096]----
+|BoBE ..          |
+|OO+ oo           |
+|@+oo..         |
+|O..@.=..        |
+|o .Bo.S        |
+|. .... .         |
+| . o.            |
+|. ...            |
+| ...             |
++----[SHA256]-----
+[devops@controller ~]$</code></pre>
 </div>
 </div>
 <div class="paragraph">
