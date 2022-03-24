@@ -70,9 +70,23 @@ Ansible needs an user to connect to the client to perform tasks so we will creat
 
 [source,bash,subs="+macros,+attributes"]
 [root@client ~]# useradd -md /home/ansible ansible
+[root@client ~]# passwd ansible
+passwd devops
+Changing password for user ansible.
+New password: 
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password: 
+passwd: all authentication tokens updated successfully.
 [root@client ~]#
 
-As ansible will use public key authentication to connect we do not configure a password for the user. It is posible to use use password traditional authentication to connect to the Linux client when ansible connects but this authentication method is not used.
+As the **ansible** user will be used to connect to client machines to perform tasks we need to configure the authentication. As stated in section <<installingcontrolnode>> authentication will be performed using public key.
+
+In the controller **devops** user will be used to connect to clients using the **ansible** user so the **devops** user public key have to be configured in the **ansible** user account in all Linux clients. In the controller node:
+
+[source,bash,subs="+macros,+attributes"]
+[devops@controller ~]$ ssh-copy-id -i .ssh/id_rsa.pub ansible@client
+ansible@client's password:
+[devops@controller ~]$
 
 [#usefullinks]
 == Useful Links
