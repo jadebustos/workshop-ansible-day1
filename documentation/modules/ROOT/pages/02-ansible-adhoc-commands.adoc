@@ -1,6 +1,7 @@
 = Ansible AdHoc Commands
 include::_attributes.adoc[]
 
+
 [#introduction]
 == Introduction
 
@@ -41,6 +42,33 @@ $ ansible-doc debug
 [#steps]
 == Steps
 
+In the next exercise we are going to create a new user using AdHoc command.
+
+First, execute this instruction:
+[source,bash,subs="+macros,+attributes"]
+$ ansible localhost -c local -m user -a "name=yourname"
+
+Did it show any error? Why?
+Create a new user requires special permissions and we are going to identify
+how to indicate these permissions in Ansible.
+
+Let's try this:
+[source,bash,subs="+macros,+attributes"]
+$ ansible localhost -c local -m user -a "name=yourname" --become
+
+Now that you know the parameter **--become**. It is important to know that when
+you run commands at the command line, you can interact with the execution.
+In this case, you must provide the password of the user "student" to be able to
+execute commands with privileges:
+
+[source,bash,subs="+macros,+attributes"]
+$ ansible localhost -c local -m user -a "name=yourname" --become --ask-become-pass
+
+How can I check that the user has been created?
+with this command you can check the new user is created:
+[source,bash,subs="+macros,+attributes"]
+$ ls /home/
+
 
 [#usefullinks]
 == Useful Links
@@ -50,3 +78,4 @@ For more information, please visit:
 * https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#id3
 * https://docs.ansible.com/ansible/latest/user_guide/modules.html#working-with-modules
 * https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html
+* https://docs.ansible.com/ansible/latest/user_guide/become.html
