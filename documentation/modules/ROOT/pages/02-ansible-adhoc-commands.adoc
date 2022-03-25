@@ -1,5 +1,4 @@
 = Ansible AdHoc Commands
-
 include::_attributes.adoc[]
 
 [#introduction]
@@ -26,8 +25,8 @@ and can be useful for debugging variables or expressions. Let's run our first he
 $ ansible localhost --module-name debug --args 'msg="My first Hello world in Ansible!!"'
 
 Note that you can abbreviate the commands:
---module-name or simply -m
---args or -a
+* --module-name or simply -m
+* --args or -a
 
 The above command can be run this way too:
 [source,bash,subs="+macros,+attributes"]
