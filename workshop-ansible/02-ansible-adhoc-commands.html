@@ -141,26 +141,89 @@
 <article class="doc">
 <h1 class="page">Ansible AdHoc Commands</h1>
 <div class="sect1">
-<h2 id="steps"><a class="anchor" href="#steps"></a>Steps</h2>
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>XXXX</p>
+<p>AdHoc command allows execute a single Ansible task in a programmatic and simple way.
+This lesson dives in this Ansible feature.</p>
 </div>
+<div class="paragraph">
+<p>An AdHoc command follow this structure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ansible [pattern] --module-name [module] --args "[module options]"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where the <strong>pattern</strong> is to indicate the target hosts and groups.
+It can be a single host or a group of hosts. In this example we are going to use
+only one host, the localhost.</p>
+</div>
+<div class="paragraph">
+<p>Where <strong>module</strong> is the name of the module you want to execute. There are many modules in Ansible,
+later we will see them in detail. For now, it is important to know that modules help us execute tasks on hosts.</p>
+</div>
+<div class="paragraph">
+<p>An example of a module is "debug", this module is used to print statements at runtime
+and can be useful for debugging variables or expressions. Let&#8217;s run our first hello world in Ansible using debug!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ansible localhost --module-name debug --args 'msg="My first Hello world in Ansible!!"'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that you can abbreviate the commands:
+--module-name or simply -m
+--args or -a</p>
+</div>
+<div class="paragraph">
+<p>The above command can be run this way too:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ansible localhost -m debug -a 'msg="My first Hello world in Ansible!!"'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To find out more details about a module, you can use <strong>ansible-doc</strong>.
+It is to consult the documentation but from the command line. Very useful!</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ansible-doc debug</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="steps"><a class="anchor" href="#steps"></a>Steps</h2>
+<div class="sectionbody">
+
 </div>
 </div>
 <div class="sect1">
 <h2 id="usefullinks"><a class="anchor" href="#usefullinks"></a>Useful Links</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>XXXX</p>
+<p>For more information, please visit:</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="authorinformation"><a class="anchor" href="#authorinformation"></a>Author Information</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>XXXX</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#id3" class="bare">https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#id3</a></p>
+</li>
+<li>
+<p><a href="https://docs.ansible.com/ansible/latest/user_guide/modules.html#working-with-modules" class="bare">https://docs.ansible.com/ansible/latest/user_guide/modules.html#working-with-modules</a></p>
+</li>
+<li>
+<p><a href="https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html" class="bare">https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
