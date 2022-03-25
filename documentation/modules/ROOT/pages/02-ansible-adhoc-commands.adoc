@@ -24,9 +24,7 @@ and can be useful for debugging variables or expressions. Let's run our first he
 [source,bash,subs="+macros,+attributes"]
 $ ansible localhost --module-name debug --args 'msg="My first Hello world in Ansible!!"'
 
-Note that you can abbreviate the commands:
-* --module-name or simply -m
-* --args or -a
+NOTE: you can abbreviate the commands, --module-name or simply -m  and for --args you can use -a
 
 The above command can be run this way too:
 [source,bash,subs="+macros,+attributes"]
