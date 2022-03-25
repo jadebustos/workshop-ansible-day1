@@ -210,7 +210,50 @@ It is to consult the documentation but from the command line. Very useful!</p>
 <div class="sect1">
 <h2 id="steps"><a class="anchor" href="#steps"></a>Steps</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>In the next exercise we are going to create a new user using AdHoc command.</p>
+</div>
+<div class="paragraph">
+<p>First, execute this instruction:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ansible localhost -c local -m user -a "name=yourname"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Did it show any error? Why?
+Create a new user requires special permissions and we are going to identify
+how to indicate these permissions in Ansible.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s try this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ansible localhost -c local -m user -a "name=yourname" --become</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now that you know the parameter <strong>--become</strong>. It is important to know that when
+you run commands at the command line, you can interact with the execution.
+In this case, you must provide the password of the user "student" to be able to
+execute commands with privileges:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ansible localhost -c local -m user -a "name=yourname" --become --ask-become-pass</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>How can I check that the user has been created?
+with this command you can check the new user is created:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ls /home/</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -229,6 +272,9 @@ It is to consult the documentation but from the command line. Very useful!</p>
 </li>
 <li>
 <p><a href="https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html" class="bare">https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html</a></p>
+</li>
+<li>
+<p><a href="https://docs.ansible.com/ansible/latest/user_guide/become.html" class="bare">https://docs.ansible.com/ansible/latest/user_guide/become.html</a></p>
 </li>
 </ul>
 </div>
