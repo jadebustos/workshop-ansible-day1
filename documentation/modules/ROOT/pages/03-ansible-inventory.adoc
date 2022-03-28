@@ -44,6 +44,8 @@ web2.example.com
 mysql.example.com
 ```
 
+IMPORTANT: Ansible provides a default inventory in **/etc/ansible/hosts**. This inventory is not world writable and only the **root** user can modify it. For this reason inventories are created by users and the global inventory is not used.
+
 IMPORTANT: Two groups always exists. The **all** group contains all hosts in the inventory. The **ungrouped** host contains every host in inventory which is not part of an inventory group.
 
 [#inventorynestedgroups]
@@ -192,4 +194,5 @@ NOTE: If you use groups you can replace the hostname for the group name.
 [#usefullinks]
 == Useful Links
 
-XXXX
+* https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
+* https://docs.ansible.com/ansible/latest/cli/ansible-inventory.html
