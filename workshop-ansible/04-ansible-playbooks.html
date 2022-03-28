@@ -124,6 +124,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#firstansibleplaybook">My first ansible playbook</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#configureclients">Configure clients to run ansible tasks</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -269,13 +272,221 @@ Be certain to check the documentation for your ansible version when you check th
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="configureclients"><a class="anchor" href="#configureclients"></a>Configure clients to run ansible tasks</h3>
+<div class="paragraph">
+<p>Before running tasks in a client we need to configure it first.</p>
+</div>
+<div class="paragraph">
+<p>We need to create an user to ansible connect to the client. Connect to one of the clients, for instance to <strong>servera</strong>. Create an user named <strong>ansible</strong> with password <strong>redhat</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[student@servera ~]$ sudo su -
+[sudo] password for student:
+[root@servera ~]# useradd -md /home/ansible ansible
+[root@servera ~]# passwd ansible
+Changing password for user ansible.
+New password:
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[root@servera ~]#</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Connect to the workstation and check if there is a public/private key:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[student@workstation ~]$ ls -lh .ssh/
+-rw-r--t--. 1 student student   62 Jul 7 2021 config
+-rw-------. 1 student student 1.7K Jul 7 2021 lab_rsa
+-rw-r--r--. 1 student student  395 Jul 7 2021 lab_rsa.pub
+[student@workstation ~]$</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If no public/private key is create it can be created using <strong>ssh-keygen</strong> command.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As we are going to execute ansible tasks from the <strong>workstation</strong> server to the <strong>servera</strong> using the <strong>ansible</strong> user we have just created we need to authenticate in the client, <strong>servera</strong>, so we need to copy the public key:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[student@workstation ~]$ ssh-copy-id -i .ssh/lab_rsa.pub <a href="mailto:ansible@servera.lab.example.com">ansible@servera.lab.example.com</a>
+...
+[student@workstation ~]$</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Lab servers are already configured so we do not need to copy the public key.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Connect from <strong>workstation</strong> to <strong>servera</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[student@workstation ~]$ ssh <a href="mailto:ansible@servera.lab.example.com">ansible@servera.lab.example.com</a>
+[ansible@servera ~]$</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create a simple inventory file in <strong>workstation</strong> with only <strong>servera</strong> host and check if ansible is able to run tasks in <strong>servera</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[student@workstation ~]$ cat hosts
+servera.lab.example.com
+[student@workstation ~]$ ansible -i hosts -m ping all
+servera.lab.example.com | SUCCESS =&gt; {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+[student@workstation ~]$</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+As we have not specified any user ansible uses by default the user that executes ansible, so the <strong>student</strong> user was used.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In <strong>workstation</strong> create a playbook, modify the inventory and execute the ansible playbook:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[student@workstation ~]$ cat hosts
+servera.lab.example.com ansible_user=ansible
+[student@workstation ~]$ cat first.yaml
+---
+- name Configure important user consistently
+  hosts: servera.lab.example.com
+  tasks:
+    - name: newbie exists with UID 4000
+      user:
+        name: newbie
+        uid: 4000
+        state: present
+[student@workstation ~]$ ansible-playbook -i hosts first.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You will see something like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ansible-playbook-01.png" alt="ansible playbook 01">
+</div>
+</div>
+<div class="paragraph">
+<p>Tha ansible module <strong>user</strong> is trying to create an user. This task requires <strong>root</strong> privileges so we need to modify the playbook:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[student@workstation ~]$ cat first.yaml
+---
+- name Configure important user consistently
+  hosts: servera.lab.example.com
+  tasks:
+    - name: newbie exists with UID 4000
+      user:
+        name: newbie
+        uid: 4000
+        state: present
+      become: yes
+[student@workstation ~]$ ansible-playbook -i hosts first.yaml</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ansible-playbook-02.png" alt="ansible playbook 02">
+</div>
+</div>
+<div class="paragraph">
+<p>Now the error is a different one. The problem is that sudo required a password and this password has not been given.</p>
+</div>
+<div class="paragraph">
+<p>If we need to run tasks which need to be executed using <strong>root</strong> privileges we need to configure the user who runs the tasks in the client with passwordless sudo.</p>
+</div>
+<div class="paragraph">
+<p>In <strong>servera</strong> we need to create <strong>/etc/sudoers.d/ansible</strong> file as <strong>root</strong> user:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[student@servera ~]$ sudo su -
+[sudo] password for student:
+[root@servera ~]# cat /etc/sudoers.d/ansible
+ansible ALL=(ALL) NOPASSWD:ALL
+[root@servera ~]#</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Use your favorite editor to create the <strong>/etc/sudoers.d/ansible</strong> file.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After creating the file go to the <strong>workstation</strong> and execute the playbook again:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ansible-playbook-03.png" alt="ansible playbook 03">
+</div>
+</div>
+<div class="paragraph">
+<p>You can go to the <strong>servera</strong> and check that a new user has been created.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="steps"><a class="anchor" href="#steps"></a>Steps</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>XXXX</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configure the other servers from <strong>b</strong> to <strong>d</strong> to run tasks using the <strong>ansible</strong> user. Configure one of them with a different user than <strong>ansible</strong>.</p>
+</li>
+<li>
+<p>Check that you can run tasks in all servers using the ansible ping module.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
