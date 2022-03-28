@@ -37,6 +37,8 @@ lb2.example.com
 web1.example.com
 web2.example.com
 192.168.1.123
+192.168.1.124
+192.168.1.125
 
 [db-servers]
 mysql.example.com
@@ -63,6 +65,8 @@ lb2.example.com
 web1.example.com
 web2.example.com
 192.168.1.123
+192.168.1.124
+192.168.1.125
 
 [db-servers]
 mysql.example.com
@@ -112,6 +116,8 @@ lb2.example.com ansible_user=admin
 web1.example.com
 web2.example.com
 192.168.1.123
+192.168.1.124
+192.168.1.125
 
 [db-servers]
 mysql.example.com
@@ -124,12 +130,66 @@ db-servers
 
 In this case connection to **load-balancers** host groups will be done using the **admin** user instead of the **ansible** user. However, for the rest of the hosts the **ansible** user will be used.
 
+[#usingranges]
+=== Using ranges within inventories
+
+Ranges can be used within inventories to simplify them. Ranges are specified using **[START:END]**:
+
+```ini
+[all:vars]
+ansible_user=ansible
+ansible_python_interpreter=/usr/bin/python3
+host_key_checking=False
+
+[load-balancers]
+lb[1:2].example.com ansible_user=admin
+
+[web-servers]
+web[1:2].example.com
+192.168.1.12[3:5]
+
+[db-servers]
+mysql.example.com
+
+[application:children]
+load-balancers
+web-servers
+db-servers
+```
+
+IMPORTANT: Leading zeros can be used in numeric ranges **web[01:02].example.com**.
+
+IMPORTANT: Ranges can be used with letters as well (**[a:d]**).
+
+[#checkinginventory]
+=== Checking the inventory
+
+We can check an inventory to see if the inventory was built correctly.
+
+Create a hosts inventory file with the following content:
+
+```ini
+servera.lab.example.com
+serverb.lab.example.com
+serverc.lab.example.com
+serverd.lab.example.com
+```
+
+To check:
+
+image::ansible-inventory-01.png[]
+
+NOTE: If you use groups you can replace the hostname for the group name.
+
+[#inventoryexercises]
+=== Inventory exercises
+
+1. Create serveral groups in the inventory file, at least two, and include all the hosts in some group.
+2. Modify the above inventory replacing the hostname with the host ip address.
+3. Use ranges with the ip addresses you have used to simplify the inventory.
+4. Use letters with hostnames to simplify the inventory.
+
 [#usefullinks]
 == Useful Links
-
-XXXX
-
-[#authorinformation]
-== Author Information
 
 XXXX

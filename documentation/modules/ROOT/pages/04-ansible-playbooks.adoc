@@ -11,8 +11,3 @@ XXXX
 == Useful Links
 
 XXXX
-
-[#authorinformation]
-== Author Information
-
-XXXX

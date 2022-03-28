@@ -27,25 +27,23 @@ This tutorial is maintained by:
 * xref:01-prerequisites.adoc#configuringansibleclients[Configuring Ansible Clients]
 * xref:01-prerequisites.adoc#validatingansibleconfiguration[Validating Ansible configuration]
 * xref:01-prerequisites.adoc#usefullinks[Useful Links]
-* xref:01-prerequisites.adoc#authorinformation[Author Information]
-
 
 [.tile]
 .xref:02-ansible-adhoc-commands.adoc[Ansible AdHoc Commands]
 * xref:02-ansible-adhoc-commands.adoc#introduction[introduction]
 * xref:02-ansible-adhoc-commands.adoc#usefullinks[Useful Links]
-* xref:02-ansible-adhoc-commands.adoc#authorinformation[Author Information]
 
 [.tile]
 .xref:03-ansible-inventory.adoc[Ansible Inventory]
 * xref:03-ansible-inventory.adoc#introduction[Introduction]
 * xref:03-ansible-inventory.adoc#inventorynestedgroups[Nested Groups]
 * xref:03-ansible-inventory.adoc#commonconfiguration[Common Configuration]
+* xref:03-ansible-inventory.adoc#usingranges[Using ranges within inventories]
+* xref:03-ansible-inventory.adoc#checkinginventory[Checking inventory]
+* xref:03-ansible-inventory.adoc#inventoryexercises[Inventory exercises]
 * xref:03-ansible-inventory.adoc#usefullinks[Useful Links]
-* xref:03-ansible-inventory.adoc#authorinformation[Author Information]
 
 [.tile]
 .xref:04-ansible-playbooks.adoc[Ansible Playbooks]
 * xref:04-ansible-playbooks.adoc#steps[Steps]
 * xref:04-ansible-playbooks.adoc#usefullinks[Useful Links]
-* xref:04-ansible-playbooks.adoc#authorinformation[Author Information]
