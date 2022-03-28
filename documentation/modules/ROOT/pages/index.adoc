@@ -32,13 +32,13 @@ This tutorial is maintained by:
 
 [.tile]
 .xref:02-ansible-adhoc-commands.adoc[Ansible AdHoc Commands]
-* xref:02-ansible-adhoc-commands.adoc#steps[Steps]
+* xref:02-ansible-adhoc-commands.adoc#introduction[introduction]
 * xref:02-ansible-adhoc-commands.adoc#usefullinks[Useful Links]
 * xref:02-ansible-adhoc-commands.adoc#authorinformation[Author Information]
 
 [.tile]
 .xref:03-ansible-inventory.adoc[Ansible Inventory]
-* xref:02-ansible-inventory.adoc#steps[Steps]
+* xref:02-ansible-inventory.adoc#introduction[Introduction]
 * xref:02-ansible-inventory.adoc#usefullinks[Useful Links]
 * xref:02-ansible-inventory.adoc#authorinformation[Author Information]
 
