@@ -118,6 +118,15 @@
     <a class="nav-link" href="04-ansible-playbooks.html">4. Ansible Playbooks</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#introduction">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#firstansibleplaybook">My first ansible playbook</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#steps">Steps</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -160,11 +169,8 @@
 <div class="paragraph">
 <p>In this section we are going to learn how to write these "scripts" in ansible. These "scripts" are called <strong>ansible playbooks</strong>.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_my_first_ansible_playbook"><a class="anchor" href="#_my_first_ansible_playbook"></a>My first ansible playbook</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="firstansibleplaybook"><a class="anchor" href="#firstansibleplaybook"></a>My first ansible playbook</h3>
 <div class="paragraph">
 <p>Ansible playbooks are written in <a href="https://en.wikipedia.org/wiki/YAML">YAML</a>:</p>
 </div>
@@ -180,6 +186,18 @@
         uid: 4000
         state: present</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Only the space character can be used for indentation, tab characters are not allowed.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The above playbook creates a user named <strong>newbie</strong> with an UID of <strong>4000</strong> in those servers where we execute the playbook.</p>
@@ -211,6 +229,18 @@ user:
 </li>
 </ul>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Tasks order in the ansible playbook are important due to all tasks will be execute in the same order that they are listed in the playbook.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>The <strong>user</strong> ansible module can create a linux user you can check all the parameters in two ways:</p>
 </div>
@@ -237,6 +267,7 @@ Be certain to check the documentation for your ansible version when you check th
 </td>
 </tr>
 </table>
+</div>
 </div>
 </div>
 </div>
