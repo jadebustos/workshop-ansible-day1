@@ -103,10 +103,10 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="03-ansible-inventory.html#checkinginventory">Checking inventory</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="03-ansible-inventory.html#inventoryexercises">Inventory exercises</a>
-  </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-ansible-inventory.html#steps">Steps</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="03-ansible-inventory.html#usefullinks">Useful Links</a>
@@ -152,7 +152,34 @@
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In section <a href="#ansibleadhoccommands">[ansibleadhoccommands]</a></p>
+<p>In section <a href="#ansibleadhoccommands">[ansibleadhoccommands]</a> we have learned how to execute AdHoc commands.</p>
+</div>
+<div class="paragraph">
+<p>Ansible also allows us to write "scripts" which is a set of tasks to be executed in a host or group of hosts.</p>
+</div>
+<div class="paragraph">
+<p>In this section we are going to learn how to write these "scripts" in ansible. These "scripts" are called <strong>ansible playbooks</strong>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_my_first_ansible_playbook"><a class="anchor" href="#_my_first_ansible_playbook"></a>My first ansible playbook</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ansible playbooks are written in <a href="https://en.wikipedia.org/wiki/YAML">YAML</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+- name Configure important user consistently
+  hosts: servera.lab.example.com
+  tasks:
+    - name: newbie exists with UID 4000
+      user:
+        name: newbie
+        uid: 4000
+        state: present</code></pre>
+</div>
 </div>
 </div>
 </div>
