@@ -2,153 +2,27 @@
 include::_attributes.adoc[]
 
 [#prerequisites]
-== Prerequequisites
+== Prerequisites
 
-Ansible has multiples ways to be installed. This lesson explores this aspect.
+Ansible has multiples ways to be installed but in general, you have to:
+* Install the Control Node
+* Configure Ansible Clients.
+
+For this laboratory we only need to perform the installation of the control node since
+the clients are already configured. This lesson explores this aspect.
 
 [#installingcontrolnode]
 == Installing Control Node
 
-To install the Ansible Engine connect to the machine you want to use to execute ansible, the ansible controller from now on, and as root user:
+To install the Ansible connect to the machine "workstation".
 
 [source,bash,subs="+macros,+attributes"]
-[root@controller ~]# dnf install epel-release -y
+$ lab intro-install start
 ...
-[root@controller ~]# dnf install ansible git -y
-...
-[root@controller ~]#
-
-As a best practice you should create a non-privileged user to execute ansible so:
-
-[source,bash,subs="+macros,+attributes"]
-[root@controller ~]# useradd -md /home/devops devops
-[root@controller ~]# passwd devops
-Changing password for user devops.
-New password: 
-BAD PASSWORD: The password is shorter than 8 characters
-Retype new password: 
-passwd: all authentication tokens updated successfully.
-[root@controller ~]#
-
-From now on we will use the **devops** user in the controller node to create and execute ansible tasks.
-
-As ansible will use SSH to connect to Linux clients we need to create a SSH public/private key to connect to Linux clients where we want to perform tasks using ansible. As **devops** user:
-
-[source,bash,subs="+macros,+attributes"]
-[devops@controller ~]$ ssh-keygen -t rsa -b 4096
-Generating public/private rsa key pair.
-Enter file in which to save the key (/home/devops/.ssh/id_rsa): 
-Created directory '/home/devops/.ssh'.
-Enter passphrase (empty for no passphrase): 
-Enter same passphrase again: 
-Your identification has been saved in /home/devops/.ssh/id_rsa
-Your public key has been saved in /home/devops/.ssh/id_rsa.pub
-The key fingerprint is:
-SHA256:kuIq9VLRci2GwyJQrizANZiDsnmAwPxNEzrbCMlmhVE devops@controller
-The key's randomart image is:
-+---[RSA 4096]----+
-|BoBE ..          |
-|OO+ oo           |
-|+@++oo..         |
-|O.+.@.=..        |
-|o+ +.Bo.S        |
-|. .... .         |
-| . o.            |
-|. ...            |
-| ...             |
-+----[SHA256]-----+
-[devops@controller ~]$
+$ sudo dnf install ansible
 
 You can see a more detailed information in section <<usefullinks>>.
 
-[#configuringansibleclients]
-== Configuring Ansible Clients
-
-We need at least one Linux client. We need to perform the following actions in the Linux client to be able to execute ansible tasks within.
-
-We should install **python** in the client:
-
-[source,bash,subs="+macros,+attributes"]
-[root@client ~]# dnf install python36 -y
-...
-[root@client ~]#
-
-Ansible needs an user to connect to the client to perform tasks so we will create a user which will be used for ansible to connect to the client:
-
-[source,bash,subs="+macros,+attributes"]
-[root@client ~]# useradd -md /home/ansible ansible
-[root@client ~]# passwd ansible
-passwd devops
-Changing password for user ansible.
-New password: 
-BAD PASSWORD: The password is shorter than 8 characters
-Retype new password: 
-passwd: all authentication tokens updated successfully.
-[root@client ~]#
-
-As the **ansible** user will be used to connect to client machines to perform tasks we need to configure the authentication. As stated in section <<installingcontrolnode>> authentication will be performed using public key.
-
-In the controller **devops** user will be used to connect to clients using the **ansible** user so the **devops** user public key have to be configured in the **ansible** user account in all Linux clients. In the controller node:
-
-[source,bash,subs="+macros,+attributes"]
-[devops@controller ~]$ ssh-copy-id -i .ssh/id_rsa.pub ansible@client
-ansible@client's password:
-[devops@controller ~]$
-
-As some tasks we are going to perform using ansible would need privileged access, such as:
-
-* Installing/removing software
-* Rebooting system.
-* Changing system's configuration.
-* ...
-
-We will need to provide **ansible** user a way to run privileged commands, which means **root** privileges. For this reason we will allow the **ansible** user to be able to switch to **root** user and as we are talking about automation we will configure **ansible** user to impersonate **root** without asking for a password. For this reason we will create a file **/etc/sudoers.d/ansible**:
-
-[source,bash,subs="+macros,+attributes"]
-[root@client ~]# cat /etc/sudoers.d/ansible 
-ansible	ALL = (ALL) NOPASSWD: ALL
-[root@client ~]#* xref:01-prerequisites.adoc#validatingansibleconfiguration[Validating Ansible configuration]
-
-[#validatingansibleconfiguration]
-== Validating Ansible configuration
-
-Before starting to use ansible we should check that all the configuration is working.
-
-The first thing we need to check is that **devops** user is able to connect to **ansible** user in the linux clients.
-
-So the first thing we perform is to create an inventory file (we will explain what an inventory file is in section <<ansibleinventory>>). Create a file named **hosts**:
-
-[source,bash,subs="+macros,+attributes"]
-[devops@controller ~]$ mkdir ansible
-[devops@controller ~]$ cd ansible
-[devops@controller ansible]$ cat hosts
-[all:vars]
-ansible_user=ansible
-[clients]
-<YOUR ANSIBLE CLIENT IP HERE>
-[devops@controller ansible]$
-
-To check that ansible is able to connect to the client using the **ansible** user:
-
-[source,bash,subs="+macros,+attributes"]
-[devops@controller ansible]$ ansible -i hosts -m ping all
-client | SUCCESS => {
-    "changed": false,
-    "ping": "pong"
-}
-[devops@controller ansible]$
-
-If you get a similar output, **congratulations!!!** If not review section <<configuringansibleclients>>.
-
-So as ansible is able to connect to the client using the **ansible** user now we need to check that **ansible** user is able to perform passwordless sudo in the client. Connect to linux client as ansible user:
-
-[source,bash,subs="+macros,+attributes"]
-[ansible@client ~]$ sudo su -
-[root@client ~]#
-
-If you were able to change to **root** user without being prompted for password you can start using ansible. **Congratulations!!!**. If not review section <<configuringansibleclients>>.
-
-IMPORTANT: If these two checks are not successful you will not able to run ansible tasks. Review all the configuration in ansible controller node and ansible linux clients until these two checks are successfully passed.
 
 [#usefullinks]
 == Useful Links
