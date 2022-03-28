@@ -1,3 +1,4 @@
+[#ansibleadhoccommands]
 = Ansible AdHoc Commands
 include::_attributes.adoc[]
 

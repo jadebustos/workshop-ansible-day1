@@ -181,6 +181,8 @@ To check:
 
 image::ansible-inventory-01.png[]
 
+IMPORTANT: Server names need to have DNS resolution.
+
 NOTE: If you use groups you can replace the hostname for the group name.
 
 [#inventoryexercises]
