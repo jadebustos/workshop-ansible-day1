@@ -159,10 +159,16 @@
 <article class="doc">
 <h1 class="page">Setup</h1>
 <div class="sect1">
-<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequequisites</h2>
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Ansible has multiples ways to be installed. This lesson explores this aspect.</p>
+<p>Ansible has multiples ways to be installed but in general, you have to:
+* Install the Control Node
+* Configure Ansible Clients.</p>
+</div>
+<div class="paragraph">
+<p>For this laboratory we only need to perform the installation of the control node since
+the clients are already configured. This lesson explores this aspect.</p>
 </div>
 </div>
 </div>
@@ -170,209 +176,17 @@
 <h2 id="installingcontrolnode"><a class="anchor" href="#installingcontrolnode"></a>Installing Control Node</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To install the Ansible Engine connect to the machine you want to use to execute ansible, the ansible controller from now on, and as root user:</p>
+<p>To install the Ansible connect to the machine "workstation".</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[root@controller ~]# dnf install epel-release -y
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ lab intro-install start
 ...
-[root@controller ~]# dnf install ansible git -y
-...
-[root@controller ~]#</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>As a best practice you should create a non-privileged user to execute ansible so:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[root@controller ~]# useradd -md /home/devops devops
-[root@controller ~]# passwd devops
-Changing password for user devops.
-New password:
-BAD PASSWORD: The password is shorter than 8 characters
-Retype new password:
-passwd: all authentication tokens updated successfully.
-[root@controller ~]#</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>From now on we will use the <strong>devops</strong> user in the controller node to create and execute ansible tasks.</p>
-</div>
-<div class="paragraph">
-<p>As ansible will use SSH to connect to Linux clients we need to create a SSH public/private key to connect to Linux clients where we want to perform tasks using ansible. As <strong>devops</strong> user:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[devops@controller ~]$ ssh-keygen -t rsa -b 4096
-Generating public/private rsa key pair.
-Enter file in which to save the key (/home/devops/.ssh/id_rsa):
-Created directory '/home/devops/.ssh'.
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-Your identification has been saved in /home/devops/.ssh/id_rsa
-Your public key has been saved in /home/devops/.ssh/id_rsa.pub
-The key fingerprint is:
-SHA256:kuIq9VLRci2GwyJQrizANZiDsnmAwPxNEzrbCMlmhVE devops@controller
-The key's randomart image is:
----[RSA 4096]----
-|BoBE ..          |
-|OO+ oo           |
-|@+oo..         |
-|O..@.=..        |
-|o .Bo.S        |
-|. .... .         |
-| . o.            |
-|. ...            |
-| ...             |
-+----[SHA256]-----
-[devops@controller ~]$</code></pre>
+$ sudo dnf install ansible</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>You can see a more detailed information in section <a href="#usefullinks">Useful Links</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="configuringansibleclients"><a class="anchor" href="#configuringansibleclients"></a>Configuring Ansible Clients</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>We need at least one Linux client. We need to perform the following actions in the Linux client to be able to execute ansible tasks within.</p>
-</div>
-<div class="paragraph">
-<p>We should install <strong>python</strong> in the client:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[root@client ~]# dnf install python36 -y
-...
-[root@client ~]#</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Ansible needs an user to connect to the client to perform tasks so we will create a user which will be used for ansible to connect to the client:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[root@client ~]# useradd -md /home/ansible ansible
-[root@client ~]# passwd ansible
-passwd devops
-Changing password for user ansible.
-New password:
-BAD PASSWORD: The password is shorter than 8 characters
-Retype new password:
-passwd: all authentication tokens updated successfully.
-[root@client ~]#</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>As the <strong>ansible</strong> user will be used to connect to client machines to perform tasks we need to configure the authentication. As stated in section <a href="#installingcontrolnode">Installing Control Node</a> authentication will be performed using public key.</p>
-</div>
-<div class="paragraph">
-<p>In the controller <strong>devops</strong> user will be used to connect to clients using the <strong>ansible</strong> user so the <strong>devops</strong> user public key have to be configured in the <strong>ansible</strong> user account in all Linux clients. In the controller node:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[devops@controller ~]$ ssh-copy-id -i .ssh/id_rsa.pub ansible@client
-ansible@client's password:
-[devops@controller ~]$</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>As some tasks we are going to perform using ansible would need privileged access, such as:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Installing/removing software</p>
-</li>
-<li>
-<p>Rebooting system.</p>
-</li>
-<li>
-<p>Changing system&#8217;s configuration.</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>We will need to provide <strong>ansible</strong> user a way to run privileged commands, which means <strong>root</strong> privileges. For this reason we will allow the <strong>ansible</strong> user to be able to switch to <strong>root</strong> user and as we are talking about automation we will configure <strong>ansible</strong> user to impersonate <strong>root</strong> without asking for a password. For this reason we will create a file <strong>/etc/sudoers.d/ansible</strong>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[root@client ~]# cat /etc/sudoers.d/ansible
-ansible	ALL = (ALL) NOPASSWD: ALL
-[root@client ~]#* <a href="#validatingansibleconfiguration">Validating Ansible configuration</a></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="validatingansibleconfiguration"><a class="anchor" href="#validatingansibleconfiguration"></a>Validating Ansible configuration</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Before starting to use ansible we should check that all the configuration is working.</p>
-</div>
-<div class="paragraph">
-<p>The first thing we need to check is that <strong>devops</strong> user is able to connect to <strong>ansible</strong> user in the linux clients.</p>
-</div>
-<div class="paragraph">
-<p>So the first thing we perform is to create an inventory file (we will explain what an inventory file is in section <a href="#ansibleinventory">[ansibleinventory]</a>). Create a file named <strong>hosts</strong>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[devops@controller ~]$ mkdir ansible
-[devops@controller ~]$ cd ansible
-[devops@controller ansible]$ cat hosts
-[all:vars]
-ansible_user=ansible
-[clients]
-&lt;YOUR ANSIBLE CLIENT IP HERE&gt;
-[devops@controller ansible]$</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>To check that ansible is able to connect to the client using the <strong>ansible</strong> user:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[devops@controller ansible]$ ansible -i hosts -m ping all
-client | SUCCESS =&gt; {
-    "changed": false,
-    "ping": "pong"
-}
-[devops@controller ansible]$</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you get a similar output, <strong>congratulations!!!</strong> If not review section <a href="#configuringansibleclients">Configuring Ansible Clients</a>.</p>
-</div>
-<div class="paragraph">
-<p>So as ansible is able to connect to the client using the <strong>ansible</strong> user now we need to check that <strong>ansible</strong> user is able to perform passwordless sudo in the client. Connect to linux client as ansible user:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[ansible@client ~]$ sudo su -
-[root@client ~]#</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you were able to change to <strong>root</strong> user without being prompted for password you can start using ansible. <strong>Congratulations!!!</strong>. If not review section <a href="#configuringansibleclients">Configuring Ansible Clients</a>.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-If these two checks are not successful you will not able to run ansible tasks. Review all the configuration in ansible controller node and ansible linux clients until these two checks are successfully passed.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
