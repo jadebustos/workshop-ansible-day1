@@ -77,6 +77,9 @@
     <a class="nav-link" href="02-ansible-adhoc-commands.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-ansible-adhoc-commands.html#steps">Steps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="02-ansible-adhoc-commands.html#usefullinks">Useful Links</a>
   </li>
 </ul>
@@ -192,6 +195,18 @@ web2.example.com
 [db-servers]
 mysql.example.com</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Ansible provides a default inventory in <strong>/etc/ansible/hosts</strong>. This inventory is not world writable and only the <strong>root</strong> user can modify it. For this reason inventories are created by users and the global inventory is not used.
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -422,8 +437,15 @@ If you use groups you can replace the hostname for the group name.
 <div class="sect1">
 <h2 id="usefullinks"><a class="anchor" href="#usefullinks"></a>Useful Links</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>XXXX</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html" class="bare">https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html</a></p>
+</li>
+<li>
+<p><a href="https://docs.ansible.com/ansible/latest/cli/ansible-inventory.html" class="bare">https://docs.ansible.com/ansible/latest/cli/ansible-inventory.html</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
