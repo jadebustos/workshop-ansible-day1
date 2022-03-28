@@ -27,6 +27,37 @@ Ansible playbooks are written in https://en.wikipedia.org/wiki/YAML[YAML]:
         uid: 4000
         state: present
 
+The above playbook creates a user named **newbie** with an UID of **4000** in those servers where we execute the playbook.
+
+We can add as many tasks as we need:
+
+[source,yaml,subs="+macros,+attributes"]
+---
+- name Configure important user consistently
+  hosts: servera.lab.example.com
+  tasks:
+    - name: newbie exists with UID 4000
+      user:
+        name: newbie
+        uid: 4000
+        state: present
+
+    - name: oldie exists with UID 4001
+      user:
+        name: oldie
+        uid: 4001
+        state: present
+
+The **user** ansible module can create a linux user you can check all the parameters in two ways:
+
+1. Console
+   [source,yaml,subs="+macros,+attributes"]
+   $ ansible-doc user
+
+2. https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html[Web Documentation]
+
+IMPORTANT: Be certain to check the documentation for your ansible version when you check the web documentation.
+
 [#steps]
 == Steps
 

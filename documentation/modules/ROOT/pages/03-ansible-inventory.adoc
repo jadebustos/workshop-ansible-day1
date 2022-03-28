@@ -191,7 +191,21 @@ NOTE: If you use groups you can replace the hostname for the group name.
 1. Create several groups in the inventory file, at least two, and include all the hosts in some group.
    Use a text editor to create a file named **hosts**:
    
+   ```ini
+   [web]
+   servera.lab.example.com
+   serverb.lab.example.com
+   [bbdd]
+   serverc.lab.example.com
+   serverd.lab.example.com
+   ```
+   Execute the following:
+   
+   [source,bash,subs="+macros,+attributes"]
+   $ ansible -i hosts web --list-hosts
 
+   [source,bash,subs="+macros,+attributes"]
+   $ ansible -i hosts servera.lab.example.com --list-hosts
 
 2. Modify the above inventory replacing the hostname with the host ip address.
 3. Use ranges with the ip addresses you have used to simplify the inventory.
