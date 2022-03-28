@@ -46,5 +46,7 @@ This tutorial is maintained by:
 
 [.tile]
 .xref:04-ansible-playbooks.adoc[Ansible Playbooks]
+* xref:04-ansible-playbooks.adoc#introduction[Introduction]
+* xref:04-ansible-playbooks.adoc#firstansibleplaybook[My first ansible playbook]
 * xref:04-ansible-playbooks.adoc#steps[Steps]
 * xref:04-ansible-playbooks.adoc#usefullinks[Useful Links]
