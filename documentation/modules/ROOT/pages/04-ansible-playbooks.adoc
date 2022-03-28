@@ -5,7 +5,27 @@ include::_attributes.adoc[]
 [#introduction]
 == Introduction
 
-In section <<ansibleadhoccommands>>
+In section <<ansibleadhoccommands>> we have learned how to execute AdHoc commands. 
+
+Ansible also allows us to write "scripts" which is a set of tasks to be executed in a host or group of hosts.
+
+In this section we are going to learn how to write these "scripts" in ansible. These "scripts" are called **ansible playbooks**.
+
+[#]
+== My first ansible playbook
+
+Ansible playbooks are written in https://en.wikipedia.org/wiki/YAML[YAML]:
+
+[source,yaml,subs="+macros,+attributes"]
+---
+- name Configure important user consistently
+  hosts: servera.lab.example.com
+  tasks:
+    - name: newbie exists with UID 4000
+      user:
+        name: newbie
+        uid: 4000
+        state: present
 
 [#steps]
 == Steps

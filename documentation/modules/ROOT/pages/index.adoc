@@ -41,7 +41,7 @@ This tutorial is maintained by:
 * xref:03-ansible-inventory.adoc#commonconfiguration[Common Configuration]
 * xref:03-ansible-inventory.adoc#usingranges[Using ranges within inventories]
 * xref:03-ansible-inventory.adoc#checkinginventory[Checking inventory]
-* xref:03-ansible-inventory.adoc#inventoryexercises[Inventory exercises]
+* xref:03-ansible-inventory.adoc#steps[Steps]
 * xref:03-ansible-inventory.adoc#usefullinks[Useful Links]
 
 [.tile]
