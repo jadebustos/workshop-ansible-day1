@@ -181,6 +181,63 @@
         state: present</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The above playbook creates a user named <strong>newbie</strong> with an UID of <strong>4000</strong> in those servers where we execute the playbook.</p>
+</div>
+<div class="paragraph">
+<p>We can add as many tasks as we need:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+- name Configure important user consistently
+  hosts: servera.lab.example.com
+  tasks:
+    - name: newbie exists with UID 4000
+      user:
+        name: newbie
+        uid: 4000
+        state: present</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>name: oldie exists with UID 4001
+user:
+  name: oldie
+  uid: 4001
+  state: present</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <strong>user</strong> ansible module can create a linux user you can check all the parameters in two ways:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Console
+[source,yaml,subs="+macros,+attributes"]
+$ ansible-doc user</p>
+</li>
+<li>
+<p><a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html">Web Documentation</a></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Be certain to check the documentation for your ansible version when you check the web documentation.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">

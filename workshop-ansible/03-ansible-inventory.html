@@ -435,6 +435,31 @@ If you use groups you can replace the hostname for the group name.
 <li>
 <p>Create several groups in the inventory file, at least two, and include all the hosts in some group.
 Use a text editor to create a file named <strong>hosts</strong>:</p>
+<div class="literalblock">
+<div class="content">
+<pre>```ini
+[web]
+servera.lab.example.com
+serverb.lab.example.com
+[bbdd]
+serverc.lab.example.com
+serverd.lab.example.com
+```
+Execute the following:</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[source,bash,subs="+macros,+attributes"]
+$ ansible -i hosts web --list-hosts</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[source,bash,subs="+macros,+attributes"]
+$ ansible -i hosts servera.lab.example.com --list-hosts</pre>
+</div>
+</div>
 </li>
 <li>
 <p>Modify the above inventory replacing the hostname with the host ip address.</p>
