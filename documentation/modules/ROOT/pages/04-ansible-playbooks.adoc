@@ -62,10 +62,132 @@ The **user** ansible module can create a linux user you can check all the parame
 
 IMPORTANT: Be certain to check the documentation for your ansible version when you check the web documentation.
 
+[#configureclients]
+=== Configure clients to run ansible tasks
+
+Before running tasks in a client we need to configure it first.
+
+We need to create an user to ansible connect to the client. Connect to one of the clients, for instance to **servera**. Create an user named **ansible** with password **redhat**:
+
+[source,bash,subs="+macros,+attributes"]
+[student@servera ~]$ sudo su -
+[sudo] password for student:
+[root@servera ~]# useradd -md /home/ansible ansible
+[root@servera ~]# passwd ansible
+Changing password for user ansible.
+New password:
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[root@servera ~]#
+
+Connect to the workstation and check if there is a public/private key:
+
+[source,bash,subs="+macros,+attributes"]
+[student@workstation ~]$ ls -lh .ssh/
+-rw-r--t--. 1 student student   62 Jul 7 2021 config
+-rw-------. 1 student student 1.7K Jul 7 2021 lab_rsa
+-rw-r--r--. 1 student student  395 Jul 7 2021 lab_rsa.pub
+[student@workstation ~]$
+
+NOTE: If no public/private key is create it can be created using **ssh-keygen** command.
+
+As we are going to execute ansible tasks from the **workstation** server to the **servera** using the **ansible** user we have just created we need to authenticate in the client, **servera**, so we need to copy the public key:
+
+[source,bash,subs="+macros,+attributes"]
+[student@workstation ~]$ ssh-copy-id -i .ssh/lab_rsa.pub ansible@servera.lab.example.com
+...
+[student@workstation ~]$
+
+IMPORTANT: Lab servers are already configured so we do not need to copy the public key.
+
+Connect from **workstation** to **servera**:
+
+[source,bash,subs="+macros,+attributes"]
+[student@workstation ~]$ ssh ansible@servera.lab.example.com
+[ansible@servera ~]$
+
+Create a simple inventory file in **workstation** with only **servera** host and check if ansible is able to run tasks in **servera**:
+
+[source,bash,subs="+macros,+attributes"]
+[student@workstation ~]$ cat hosts
+servera.lab.example.com
+[student@workstation ~]$ ansible -i hosts -m ping all
+servera.lab.example.com | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+[student@workstation ~]$
+
+NOTE: As we have not specified any user ansible uses by default the user that executes ansible, so the **student** user was used.
+
+In **workstation** create a playbook, modify the inventory and execute the ansible playbook:
+
+[source,bash,subs="+macros,+attributes"]
+[student@workstation ~]$ cat hosts
+servera.lab.example.com ansible_user=ansible
+[student@workstation ~]$ cat first.yaml
+---
+- name Configure important user consistently
+  hosts: servera.lab.example.com
+  tasks:
+    - name: newbie exists with UID 4000
+      user:
+        name: newbie
+        uid: 4000
+        state: present
+[student@workstation ~]$ ansible-playbook -i hosts first.yaml
+
+You will see something like this:
+
+image::ansible-playbook-01.png[]
+
+Tha ansible module **user** is trying to create an user. This task requires **root** privileges so we need to modify the playbook:
+
+[source,bash,subs="+macros,+attributes"]
+[student@workstation ~]$ cat first.yaml
+---
+- name Configure important user consistently
+  hosts: servera.lab.example.com
+  tasks:
+    - name: newbie exists with UID 4000
+      user:
+        name: newbie
+        uid: 4000
+        state: present
+      become: yes
+[student@workstation ~]$ ansible-playbook -i hosts first.yaml
+
+image::ansible-playbook-02.png[]
+
+Now the error is a different one. The problem is that sudo required a password and this password has not been given.
+
+If we need to run tasks which need to be executed using **root** privileges we need to configure the user who runs the tasks in the client with passwordless sudo. 
+
+In **servera** we need to create **/etc/sudoers.d/ansible** file as **root** user:
+[source,bash,subs="+macros,+attributes"]
+[student@servera ~]$ sudo su -
+[sudo] password for student:
+[root@servera ~]# cat /etc/sudoers.d/ansible
+ansible ALL=(ALL) NOPASSWD:ALL
+[root@servera ~]#
+
+IMPORTANT: Use your favorite editor to create the **/etc/sudoers.d/ansible** file.
+
+After creating the file go to the **workstation** and execute the playbook again:
+
+image::ansible-playbook-03.png[]
+
+You can go to the **servera** and check that a new user has been created.
+
 [#steps]
 == Steps
 
-XXXX
+1. Configure the other servers from **b** to **d** to run tasks using the **ansible** user. Configure one of them with a different user than **ansible**.
+2. Check that you can run tasks in all servers using the ansible ping module.
 
 [#usefullinks]
 == Useful Links
