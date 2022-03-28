@@ -12,6 +12,8 @@
 
 * xref:03-ansible-inventory.adoc[3. Ansible Inventory]
 ** xref:03-ansible-inventory.adoc#introduction[Introduction]
+*** xref:03-ansible-inventory.adoc#inventorynestedgroups[Nested Groups]
+*** xref:03-ansible-inventory.adoc#commonconfiguration[Common Configuration]
 ** xref:03-ansible-inventory.adoc#usefullinks[Useful Links]
 ** xref:03-ansible-inventory.adoc#authorinformation[Author Information]
 
