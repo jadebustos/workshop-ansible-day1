@@ -5,7 +5,9 @@ include::_attributes.adoc[]
 == Prerequisites
 
 Ansible has multiples ways to be installed but in general, you have to:
-* Install the Control Node
+
+* Install the Control Node.
+
 * Configure Ansible Clients.
 
 For this laboratory we only need to perform the installation of the control node since
@@ -23,10 +25,30 @@ $ sudo dnf install ansible
 
 You can see a more detailed information in section <<usefullinks>>.
 
-
 [#usefullinks]
 == Useful Links
 
 For more information, please visit:
 
 * https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-node
+
+[#installingownlab]
+== Installing your own lab
+
+This workshop is delivered using the available courses in the Red Hat Academy program.
+
+If you want to create your own lab you will need to create:
+
+* One virtual machine for the ansible controller on your laptop.
+* At least one virtual machine for the ansible client on your laptop.
+* If you use CentOS you will need to install ansible:
+
+  ```
+  [root@centos ~]# dnf install epel-release -y
+  ...
+  [root@centos ~]# dnf install ansible -y
+  ...
+  [root@centos ~]# 
+  ```
+
+If you do not now how to install a virtual machine you can use the following tutorial https://jadebustos.github.io/virtuallabs-howto/[Virtual labs creation]

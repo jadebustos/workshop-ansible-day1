@@ -25,6 +25,7 @@ This tutorial is maintained by:
 .xref:01-prerequisites.adoc[Prerequisites]
 * xref:01-prerequisites.adoc#installingcontrolnode[Installing Control Node]
 * xref:01-prerequisites.adoc#usefullinks[Useful Links]
+* xref:01-prerequisites.adoc#installingownlab[Installing your own lab]
 
 [.tile]
 .xref:02-ansible-adhoc-commands.adoc[Ansible AdHoc Commands]
