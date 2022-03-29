@@ -4,7 +4,7 @@
 ** xref:01-prerequisites.adoc#validatingansibleconfiguration[Validating Ansible configuration]
 ** xref:01-prerequisites.adoc#usefullinks[Useful Links]
 
-* xref:02-ansible-adhoc-commands.adoc[2. Ansible AdHocs Commands]
+* xref:02-ansible-adhoc-commands.adoc#ansibleadhoccommands[2. Ansible AdHocs Commands]
 ** xref:02-ansible-adhoc-commands.adoc#introduction[Introduction]
 ** xref:02-ansible-adhoc-commands.adoc#steps[Steps]
 ** xref:02-ansible-adhoc-commands.adoc#usefullinks[Useful Links]

@@ -198,7 +198,7 @@ NOTE: If you use groups you can replace the hostname for the group name.
    serverc.lab.example.com
    serverd.lab.example.com
    
-   Execute the following:
+Execute the following:
    
    $ ansible -i hosts web --list-hosts
 
