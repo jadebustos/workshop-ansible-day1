@@ -8,7 +8,7 @@
 ** xref:02-ansible-adhoc-commands.adoc#introduction[Introduction]
 ** xref:02-ansible-adhoc-commands.adoc#steps[Steps]
 ** xref:02-ansible-adhoc-commands.adoc#usefullinks[Useful Links]
-
+////
 * xref:03-ansible-inventory.adoc[3. Ansible Inventory]
 ** xref:03-ansible-inventory.adoc#introduction[Introduction]
 *** xref:03-ansible-inventory.adoc#inventorynestedgroups[Nested Groups]
@@ -24,3 +24,4 @@
 *** xref:04-ansible-playbooks.adoc#configureclients[Configure clients to run ansible tasks]
 ** xref:04-ansible-playbooks.adoc#steps[Steps]
 ** xref:04-ansible-playbooks.adoc#usefullinks[Useful Links]
+////
