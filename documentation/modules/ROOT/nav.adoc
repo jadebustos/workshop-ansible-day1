@@ -17,11 +17,10 @@
 *** xref:03-ansible-inventory.adoc#checkinginventory[Checking inventory]
 ** xref:03-ansible-inventory.adoc#steps[Steps]
 ** xref:03-ansible-inventory.adoc#usefullinks[Useful Links]
-////
+
 * xref:04-ansible-playbooks.adoc[4. Ansible Playbooks]
 ** xref:04-ansible-playbooks.adoc#introduction[Introduction]
 *** xref:04-ansible-playbooks.adoc#firstansibleplaybook[My first ansible playbook]
 *** xref:04-ansible-playbooks.adoc#configureclients[Configure clients to run ansible tasks]
 ** xref:04-ansible-playbooks.adoc#steps[Steps]
 ** xref:04-ansible-playbooks.adoc#usefullinks[Useful Links]
-////

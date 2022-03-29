@@ -159,9 +159,9 @@ web-servers
 db-servers
 ```
 
-IMPORTANT: Leading zeros can be used in numeric ranges **web[01:02].example.com**.
+TIP: Leading zeros can be used in numeric ranges **web[01:02].example.com**.
 
-IMPORTANT: Ranges can be used with letters as well (**[a:d]**).
+TIP: Ranges can be used with letters as well (**[a:d]**).
 
 [#checkinginventory]
 === Checking the inventory
@@ -191,7 +191,7 @@ NOTE: If you use groups you can replace the hostname for the group name.
 1. Create several groups in the inventory file, at least two, and include all the hosts in some group.
    Use a text editor to create a file named **hosts**:
    
-   ```ini
+   ```
    [web]
    servera.lab.example.com
    serverb.lab.example.com

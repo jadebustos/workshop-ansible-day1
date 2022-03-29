@@ -43,7 +43,7 @@ This tutorial is maintained by:
 * xref:03-ansible-inventory.adoc#checkinginventory[Checking inventory]
 * xref:03-ansible-inventory.adoc#steps[Steps]
 * xref:03-ansible-inventory.adoc#usefullinks[Useful Links]
-//// 
+
 [.tile]
 .xref:04-ansible-playbooks.adoc[Ansible Playbooks]
 * xref:04-ansible-playbooks.adoc#introduction[Introduction]
@@ -51,4 +51,3 @@ This tutorial is maintained by:
 * xref:04-ansible-playbooks.adoc#configureclients[Configure clients to run ansible tasks]
 * xref:04-ansible-playbooks.adoc#steps[Steps]
 * xref:04-ansible-playbooks.adoc#usefullinks[Useful Links]
-////
