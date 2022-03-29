@@ -5,7 +5,7 @@ include::_attributes.adoc[]
 [#introduction]
 == Introduction
 
-In section <<ansibleadhoccommands>> we have learned how to execute AdHoc commands. 
+We have learned how to execute AdHoc commands. 
 
 Ansible also allows us to write "scripts" which is a set of tasks to be executed in a host or group of hosts.
 
