@@ -6,6 +6,7 @@
     <title>Ansible Inventory :: Workshop Ansible (Day 1)</title>
     <link rel="canonical" href="https://redhat-scholars.github.io/course-template/workshop-ansible/03-ansible-inventory.html">
     <link rel="prev" href="02-ansible-adhoc-commands.html">
+    <link rel="next" href="04-ansible-playbooks.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -110,6 +111,30 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#usefullinks">Useful Links</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-ansible-playbooks.html">4. Ansible Playbooks</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-ansible-playbooks.html#introduction">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="04-ansible-playbooks.html#firstansibleplaybook">My first ansible playbook</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="04-ansible-playbooks.html#configureclients">Configure clients to run ansible tasks</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-ansible-playbooks.html#steps">Steps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-ansible-playbooks.html#usefullinks">Useful Links</a>
   </li>
 </ul>
   </li>
@@ -338,11 +363,11 @@ web-servers
 db-servers</code></pre>
 </div>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 Leading zeros can be used in numeric ranges <strong>web[01:02].example.com</strong>.
@@ -350,11 +375,11 @@ Leading zeros can be used in numeric ranges <strong>web[01:02].example.com</stro
 </tr>
 </table>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 Ranges can be used with letters as well (<strong>[a:d]</strong>).
@@ -424,7 +449,7 @@ If you use groups you can replace the hostname for the group name.
 Use a text editor to create a file named <strong>hosts</strong>:</p>
 <div class="literalblock">
 <div class="content">
-<pre>```ini
+<pre>```
 [web]
 servera.lab.example.com
 serverb.lab.example.com
@@ -478,6 +503,7 @@ $ ansible -i hosts servera.lab.example.com --list-hosts</pre>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="02-ansible-adhoc-commands.html">2. Ansible AdHocs Commands</a></span>
+  <span class="next"><a href="04-ansible-playbooks.html">4. Ansible Playbooks</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
