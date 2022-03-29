@@ -9,8 +9,6 @@ This tutorial is the first part of a serie of tutorials about learning how to us
 
 This tutorial assumes that you are using a RHEL family operating system (RHEL, CentOS, Fedora) unless stated otherwise.
 
-This tutorial is based on https://github.com/albertogd/ansible-training.
-
 == Mantainers
 
 This tutorial is maintained by:
