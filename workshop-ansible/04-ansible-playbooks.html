@@ -186,8 +186,7 @@
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
-- name Configure important user consistently
-  hosts: servera.lab.example.com
+- hosts: servera.lab.example.com
   tasks:
     - name: newbie exists with UID 4000
       user:
@@ -217,8 +216,7 @@ Only the space character can be used for indentation, tab characters are not all
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
-- name Configure important user consistently
-  hosts: servera.lab.example.com
+- hosts: servera.lab.example.com
   tasks:
     - name: newbie exists with UID 4000
       user:
@@ -250,9 +248,12 @@ Tasks order in the ansible playbook are important due to all tasks will be execu
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Console
-[source,yaml,subs="+macros,+attributes"]
-$ ansible-doc user</p>
+<p>Console</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ ansible-doc user</pre>
+</div>
+</div>
 </li>
 <li>
 <p><a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html">Web Documentation</a></p>
@@ -388,8 +389,7 @@ As we have not specified any user ansible uses by default the user that executes
 servera.lab.example.com ansible_user=ansible
 [student@workstation ~]$ cat first.yaml
 ---
-- name Configure important user consistently
-  hosts: servera.lab.example.com
+- hosts: servera.lab.example.com
   tasks:
     - name: newbie exists with UID 4000
       user:
@@ -414,8 +414,7 @@ servera.lab.example.com ansible_user=ansible
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[student@workstation ~]$ cat first.yaml
 ---
-- name Configure important user consistently
-  hosts: servera.lab.example.com
+- hosts: servera.lab.example.com
   tasks:
     - name: newbie exists with UID 4000
       user:
