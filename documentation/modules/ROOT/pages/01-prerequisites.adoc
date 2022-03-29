@@ -6,7 +6,7 @@ include::_attributes.adoc[]
 
 To create a Red Hat account follow these steps:
 
-* Go to https://sso.redhat.com/auth/realms/redhat-external/login-actions/registration?client_id=https%3A%2F%2Fwww.redhat.com%2Fwapps%2Fugc-oidc&tab_id=xnpcb4DY894[Red Hat Account]
+* Go to https://rha.ole.redhat.com/rha/app/[Red Hat Academy Learning Portal] and create a Red Hat Account.
  
 image::rhaccount-01.png[]
 

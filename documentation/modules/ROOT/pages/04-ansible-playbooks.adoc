@@ -18,8 +18,7 @@ Ansible playbooks are written in https://en.wikipedia.org/wiki/YAML[YAML]:
 
 [source,yaml,subs="+macros,+attributes"]
 ---
-- name Configure important user consistently
-  hosts: servera.lab.example.com
+- hosts: servera.lab.example.com
   tasks:
     - name: newbie exists with UID 4000
       user:
@@ -35,8 +34,7 @@ We can add as many tasks as we need:
 
 [source,yaml,subs="+macros,+attributes"]
 ---
-- name Configure important user consistently
-  hosts: servera.lab.example.com
+- hosts: servera.lab.example.com
   tasks:
     - name: newbie exists with UID 4000
       user:
@@ -54,7 +52,7 @@ IMPORTANT: Tasks order in the ansible playbook are important due to all tasks wi
 The **user** ansible module can create a linux user you can check all the parameters in two ways:
 
 1. Console
-   [source,yaml,subs="+macros,+attributes"]
+
    $ ansible-doc user
 
 2. https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html[Web Documentation]
@@ -130,8 +128,7 @@ In **workstation** create a playbook, modify the inventory and execute the ansib
 servera.lab.example.com ansible_user=ansible
 [student@workstation ~]$ cat first.yaml
 ---
-- name Configure important user consistently
-  hosts: servera.lab.example.com
+- hosts: servera.lab.example.com
   tasks:
     - name: newbie exists with UID 4000
       user:
@@ -149,8 +146,7 @@ Tha ansible module **user** is trying to create an user. This task requires **ro
 [source,bash,subs="+macros,+attributes"]
 [student@workstation ~]$ cat first.yaml
 ---
-- name Configure important user consistently
-  hosts: servera.lab.example.com
+- hosts: servera.lab.example.com
   tasks:
     - name: newbie exists with UID 4000
       user:
