@@ -1,7 +1,7 @@
 * xref:01-prerequisites.adoc[1. Prerequisites]
 ** xref:01-prerequisites.adoc#installingcontrolnode[Installing Control Node]
 ** xref:01-prerequisites.adoc#usefullinks[Useful Links]
-** xref:01-prerequisites.adoc#installingownlab[Installing your own lab]
+*** xref:01-prerequisites.adoc#installingownlab[Installing your own lab]
 
 * xref:02-ansible-adhoc-commands.adoc[2. Ansible AdHocs Commands]
 ** xref:02-ansible-adhoc-commands.adoc#introduction[Introduction]
