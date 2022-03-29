@@ -1,4 +1,5 @@
 * xref:01-prerequisites.adoc[1. Prerequisites]
+** xref:01-prerequisites.adoc#redhataccount[Creating a Red Hat Account]
 ** xref:01-prerequisites.adoc#installingcontrolnode[Installing Control Node]
 ** xref:01-prerequisites.adoc#usefullinks[Useful Links]
 *** xref:01-prerequisites.adoc#installingownlab[Installing your own lab]

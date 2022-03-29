@@ -1,4 +1,4 @@
-= Setup
+= Prerequisites
 include::_attributes.adoc[]
 
 [#redhataccount]
