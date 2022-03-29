@@ -33,7 +33,7 @@ For more information, please visit:
 * https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-node
 
 [#installingownlab]
-== Installing your own lab
+=== Installing your own lab
 
 This workshop is delivered using the available courses in the Red Hat Academy program.
 
