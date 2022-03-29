@@ -61,6 +61,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#usefullinks">Useful Links</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#installingownlab">Installing your own lab</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -159,9 +162,17 @@
 <h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Ansible has multiples ways to be installed but in general, you have to:
-* Install the Control Node
-* Configure Ansible Clients.</p>
+<p>Ansible has multiples ways to be installed but in general, you have to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Install the Control Node.</p>
+</li>
+<li>
+<p>Configure Ansible Clients.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>For this laboratory we only need to perform the installation of the control node since
@@ -199,6 +210,44 @@ $ sudo dnf install ansible</code></pre>
 <p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-node" class="bare">https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-node</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installingownlab"><a class="anchor" href="#installingownlab"></a>Installing your own lab</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This workshop is delivered using the available courses in the Red Hat Academy program.</p>
+</div>
+<div class="paragraph">
+<p>If you want to create your own lab you will need to create:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>One virtual machine for the ansible controller on your laptop.</p>
+</li>
+<li>
+<p>At least one virtual machine for the ansible client on your laptop.</p>
+</li>
+<li>
+<p>If you use CentOS you will need to install ansible:</p>
+<div class="literalblock">
+<div class="content">
+<pre>```
+[root@centos ~]# dnf install epel-release -y
+...
+[root@centos ~]# dnf install ansible -y
+...
+[root@centos ~]#
+```</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you do not now how to install a virtual machine you can use the following tutorial <a href="https://jadebustos.github.io/virtuallabs-howto/">Virtual labs creation</a></p>
 </div>
 </div>
 </div>
