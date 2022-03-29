@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 [#redhataccount]
 == Creating a Red Hat Account
 
-You will need to create a Red Hat account:
+To create a Red Hat account follow these steps:
 
 * Go to https://sso.redhat.com/auth/realms/redhat-external/login-actions/registration?client_id=https%3A%2F%2Fwww.redhat.com%2Fwapps%2Fugc-oidc&tab_id=xnpcb4DY894[Red Hat Account]
  
