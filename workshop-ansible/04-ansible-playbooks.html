@@ -218,19 +218,13 @@ Only the space character can be used for indentation, tab characters are not all
       user:
         name: newbie
         uid: 4000
+        state: present
+    - name: oldie exists with UID 4001
+      user:
+        name: oldie
+        uid: 4001
         state: present</code></pre>
 </div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>name: oldie exists with UID 4001
-user:
-  name: oldie
-  uid: 4001
-  state: present</p>
-</li>
-</ul>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -306,11 +300,11 @@ passwd: all authentication tokens updated successfully.
 [student@workstation ~]$</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 If no public/private key is create it can be created using <strong>ssh-keygen</strong> command.
@@ -449,11 +443,11 @@ ansible ALL=(ALL) NOPASSWD:ALL
 [root@servera ~]#</code></pre>
 </div>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 Use your favorite editor to create the <strong>/etc/sudoers.d/ansible</strong> file.
