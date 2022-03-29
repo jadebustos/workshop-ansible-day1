@@ -43,12 +43,10 @@ If you want to create your own lab you will need to create:
 * At least one virtual machine for the ansible client on your laptop.
 * If you use CentOS you will need to install ansible:
 
-  ```
   [root@centos ~]# dnf install epel-release -y
   ...
   [root@centos ~]# dnf install ansible -y
   ...
   [root@centos ~]# 
-  ```
 
-If you do not now how to install a virtual machine you can use the following tutorial https://jadebustos.github.io/virtuallabs-howto/[Virtual labs creation]
+If you do not now how to install a virtual machine you can use the following tutorial https://jadebustos.github.io/virtuallabs-howto/[Virtual labs creation].
