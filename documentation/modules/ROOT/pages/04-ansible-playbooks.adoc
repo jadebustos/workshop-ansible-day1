@@ -43,7 +43,6 @@ We can add as many tasks as we need:
         name: newbie
         uid: 4000
         state: present
-
     - name: oldie exists with UID 4001
       user:
         name: oldie
@@ -90,7 +89,7 @@ Connect to the workstation and check if there is a public/private key:
 -rw-r--r--. 1 student student  395 Jul 7 2021 lab_rsa.pub
 [student@workstation ~]$
 
-NOTE: If no public/private key is create it can be created using **ssh-keygen** command.
+TIP: If no public/private key is create it can be created using **ssh-keygen** command.
 
 As we are going to execute ansible tasks from the **workstation** server to the **servera** using the **ansible** user we have just created we need to authenticate in the client, **servera**, so we need to copy the public key:
 
@@ -175,7 +174,7 @@ In **servera** we need to create **/etc/sudoers.d/ansible** file as **root** use
 ansible ALL=(ALL) NOPASSWD:ALL
 [root@servera ~]#
 
-IMPORTANT: Use your favorite editor to create the **/etc/sudoers.d/ansible** file.
+TIP: Use your favorite editor to create the **/etc/sudoers.d/ansible** file.
 
 After creating the file go to the **workstation** and execute the playbook again:
 
