@@ -191,4 +191,5 @@ You can go to the **servera** and check that a new user has been created.
 [#usefullinks]
 == Useful Links
 
-XXXX
+* https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html
+* https://docs.ansible.com/ansible/latest/cli/ansible-playbook.html

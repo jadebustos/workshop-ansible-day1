@@ -188,7 +188,7 @@ NOTE: If you use groups you can replace the hostname for the group name.
 [#steps]
 == Steps
 
-1. Create several groups in the inventory file, at least two, and include all the hosts in some group.
+* Create several groups in the inventory file, at least two, and include all the hosts in some group.
    Use a text editor to create a file named **hosts**:
    
    [web]
@@ -204,9 +204,9 @@ Execute the following:
 
    $ ansible -i hosts servera.lab.example.com --list-hosts
 
-2. Modify the above inventory replacing the hostname with the host ip address.
-3. Use ranges with the ip addresses you have used to simplify the inventory.
-4. Use letters with hostnames to simplify the inventory.
+* Modify the above inventory replacing the hostname with the host ip address.
+* Use ranges with the ip addresses you have used to simplify the inventory.
+* Use letters with hostnames to simplify the inventory.
 
 [#usefullinks]
 == Useful Links
